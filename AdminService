@@ -1,0 +1,21 @@
+package com.projet.DocCarePortal.Service;
+
+import com.projet.DocCarePortal.Entity.Admin;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+@Service
+public interface AdminService {
+
+    Admin ajouteradmin(Admin admin);
+
+    Admin modifieradmin(Admin admin);// admin c'est les attributs de notre entity Admin
+
+    List<Admin> affichieradmin();
+
+    void supprimeradmin(Long id);
+
+    Optional<Admin> affichieradminparid(Long id);
+
+}

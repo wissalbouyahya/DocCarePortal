@@ -1,0 +1,107 @@
+package com.projet.DocCarePortal.RestController;
+
+import com.projet.DocCarePortal.Entity.Admin;
+import com.projet.DocCarePortal.Repository.AdminRepository;
+import com.projet.DocCarePortal.Service.AdminService;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+@RequestMapping(value = "/admin")
+@RestController
+@CrossOrigin("*")
+public class AdminController {
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    AdminRepository adminRepository;
+
+    @Autowired
+    AdminService adminService;
+
+
+    private final Key jwtKey = Keys.hmacShaKeyFor(
+            "doccareportal_admin_secret_key_256bits!!".getBytes(StandardCharsets.UTF_8)
+    );
+
+    @RequestMapping(method = RequestMethod.POST)
+    ResponseEntity<?> AjouterAdmin(@RequestBody Admin admin) {
+        HashMap<String, Object> response = new HashMap<>();
+        if (adminRepository.existsByEmail(admin.getEmail())) {
+            response.put("message", "email exist deja !");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        } else {
+            admin.setMdp(this.bCryptPasswordEncoder.encode(admin.getMdp()));
+            Admin savedUser = adminRepository.save(admin);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Admin> AfficherAdmin() {
+        return adminService.affichieradmin();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void SupprimerAdmin(@PathVariable("id") Long id) {
+        adminService.supprimeradmin(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Optional<Admin> getAdminById(@PathVariable("id") Long id) {
+        return adminService.affichieradminparid(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public Admin ModifierAdmin(@PathVariable("id") Long id, @RequestBody Admin admin) {
+        admin.setId(id);
+        return adminService.modifieradmin(admin);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, Object>> loginAdmin(@RequestBody Admin admin) {
+        HashMap<String, Object> response = new HashMap<>();
+
+        Admin userFromDB = adminRepository.findAdminByEmail(admin.getEmail());
+        if (userFromDB == null) {
+            response.put("message", "Admin not found!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+
+        boolean compare = this.bCryptPasswordEncoder.matches(
+                admin.getMdp(), userFromDB.getMdp()
+        );
+
+        if (!compare) {
+            response.put("message", "Password incorrect!");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+
+        String token = Jwts.builder()
+                .claim("data", userFromDB)
+                .signWith(jwtKey, SignatureAlgorithm.HS256)
+                .compact();
+
+        response.put("token", token);
+        response.put("role", userFromDB.getRole());
+        response.put("id", userFromDB.getId());
+        response.put("nom", userFromDB.getNom());
+        response.put("email", userFromDB.getEmail());
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+}

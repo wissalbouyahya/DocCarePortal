@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admiro admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Admiro admin template, best javascript admin, dashboard template, bootstrap admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <title>Ajouter Administrateur</title>
+</head>
+<body>
+    <div class="app-wrapper d-flex">
+        <!-- MENU -->
+        <app-menu></app-menu>
+
+        <main class="main-content flex-fill p-0">  <!-- IDEM LISTE: p-0 -->
+            <!-- HEADER -->
+            <app-header></app-header>
+
+            <!-- CONTENU PRINCIPAL - MÊME STRUCTURE QUE LISTE -->
+            <div class="container-fluid mt-0">  <!-- IDEM LISTE: mt-0 -->
+                <div class="page-title mb-4">    <!-- IDEM LISTE: mb-4 -->
+                    <div class="row">
+                        <div class="col-sm-6 col-12">
+                            <h2>Ajouter un Administrateur</h2>  <!-- SEUL TITRE CHANGE -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABLE-Space comme dans la liste (mais avec formulaire) -->
+                <div class="container-fluid table-space basic_table p-0">  <!-- IDEM LISTE: p-0 -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card overflow-hidden">  <!-- IDEM LISTE: card -->
+                                <div class="card-body p-4">  <!-- CARD-BODY AJOUTÉ POUR LE FORMULAIRE -->
+                                    <form [formGroup]="adminForm" (ngSubmit)="addNewAdmin()">
+                                        <div class="row g-4">
+                                            <!-- Nom -->
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-semibold">Nom</label>
+                                                <div class="input-icon">
+                                                    <i class="fas fa-user"></i>
+                                                    <input type="text" class="form-control form-control-lg" formControlName="nom" placeholder="Nom">
+                                                </div>
+                                            </div>
+
+                                            <!-- Prénom -->
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-semibold">Prénom</label>
+                                                <div class="input-icon">
+                                                    <i class="fas fa-user"></i>
+                                                    <input type="text" class="form-control form-control-lg" formControlName="prenom" placeholder="Prenom">
+                                                </div>
+                                            </div>
+
+                                            <!-- Email -->
+                                            <div class="col-12">
+                                                <label class="form-label fw-semibold">Email</label>
+                                                <div class="input-icon">
+                                                    <i class="fas fa-envelope"></i>
+                                                    <input type="email" class="form-control form-control-lg" formControlName="email" placeholder="email@exemple.com">
+                                                </div>
+                                            </div>
+
+                                            <!-- Mot de passe -->
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-semibold">Mot de passe</label>
+                                                <div class="input-icon">
+                                                    <i class="fas fa-lock"></i>
+                                                    <input type="password" class="form-control form-control-lg" formControlName="mdp" placeholder="***********">
+                                                </div>
+                                            </div>
+
+                                            <!-- Rôle -->
+                                            <div class="col-12">
+                                                <label class="form-label fw-semibold">Rôle</label>
+                                                <div class="input-icon">
+                                                    <i class="fas fa-tag"></i>
+                                                    <select class="form-select form-select-lg" formControlName="role">
+                                                        <option value="">-- Sélectionner un rôle --</option>
+                                                        <option value="ADMIN">Administrateur</option>
+                                                        <option value="SUPER_ADMIN">Super Administrateur</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <!-- Boutons -->
+                                            <div class="col-12 mt-4 d-flex gap-3 justify-content-end">
+                                                <button type="reset" class="btn btn-outline-primary rounded-pill px-4 py-2">
+                                                    <i class="fas fa-times me-2"></i> Annuler
+                                                </button>
+                                                <button type="submit" class="btn btn-primary rounded-pill px-4 py-2">
+                                                    <i class="fas fa-check me-2"></i> Ajouter
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <app-footer></app-footer>
+        </main>
+    </div>
+</body>
+</html>

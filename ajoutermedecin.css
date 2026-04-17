@@ -1,0 +1,153 @@
+/* Style pour les icônes dans les champs */
+.input-icon {
+  position: relative;
+}
+
+.input-icon i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.input-icon .form-control,
+.input-icon .form-select {
+  padding-left: 3rem !important;
+}
+
+
+.input-icon .form-select {
+  padding-left: 3rem;
+}
+
+.card-modern {
+  background: white;
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: 0 20px 30px -10px rgba(30, 40, 60, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid white;
+}
+
+.card-modern:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 40px -12px rgba(94, 110, 242, 0.15);
+  border-color: var(--primary-light);
+}
+
+
+.form-label {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  margin-bottom: 0.3rem;
+}
+
+
+.form-control-lg, .form-select-lg {
+  background: #f9fafc;
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 0.75rem 1.2rem;
+  font-size: 1rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-control-lg:focus, .form-select-lg:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+  outline: none;
+}
+
+
+.rounded-pill {
+  border-radius: 50rem !important;
+}
+
+
+.btn-primary,
+.btn-outline-primary {
+  border-radius: 50px !important;      
+  font-weight: 600;
+  padding: 0.6rem 1.8rem;                
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.3px;
+}
+
+.btn-primary {
+  background: var(--primary) !important;  
+  border: none !important;
+  box-shadow: 0 6px 14px rgba(11, 30, 58, 0.25);
+}
+
+.btn-primary:hover {
+  background: #14315c !important;         
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(11, 30, 58, 0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(11, 30, 58, 0.2);
+}
+
+.btn-primary:disabled {
+  background: #a0b8d0 !important;
+  box-shadow: none;
+  opacity: 0.6;
+  transform: none;
+}
+
+/* Bouton "Annuler" (outline) */
+.btn-outline-primary {
+  border: 2px solid var(--primary) !important;
+  color: var(--primary) !important;
+  background: transparent !important;
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary) !important;
+  color: #fff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(11, 30, 58, 0.2);
+}
+
+.btn-outline-primary:active {
+  transform: translateY(0);
+  background: #14315c !important;
+  border-color: #14315c !important;
+}
+
+/* Icônes dans les boutons */
+.btn i {
+  font-size: 1.1rem;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+
+.btn-primary::after,
+.btn-outline-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+
+.btn-primary:active::after,
+.btn-outline-primary:active::after {
+  width: 200px;
+  height: 200px;
+}
+

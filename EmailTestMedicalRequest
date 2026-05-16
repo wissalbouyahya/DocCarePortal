@@ -1,0 +1,56 @@
+package com.projet.DocCarePortal.Entity;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class EmailTestMedicalRequest {
+
+    
+    @JsonProperty("destinataireEmail")
+    private String destinataireEmail;
+
+    @JsonProperty("nomLaboratoire")
+    private String nomLaboratoire;
+
+    @JsonProperty("typeAnalyse")
+    private String typeAnalyse;
+
+    @JsonProperty("dateDemande")
+    private String dateDemande;
+
+    @JsonProperty("dateResultat")
+    private String dateResultat;
+
+    @JsonProperty("statut")
+    private String statut;
+
+    @JsonProperty("resultat")
+    private String resultat;
+
+    @JsonProperty("nomPatient")
+    private String nomPatient;
+
+    @JsonProperty("nomMedecin")
+    private String nomMedecin;
+
+    
+    public String getDestinatataireEmail() { return destinataireEmail; }
+    public String getNomLaboratoire()      { return nomLaboratoire; }
+    public String getTypeAnalyse()         { return typeAnalyse; }
+    public String getDateDemande()         { return dateDemande; }
+    public String getDateResultat()        { return dateResultat; }
+    public String getStatut()              { return statut; }
+    public String getResultat()            { return resultat; }
+    public String getNomPatient()          { return nomPatient; }
+    public String getNomMedecin()          { return nomMedecin; }
+
+    
+    public void setDestinatataireEmail(String v) { this.destinataireEmail = v; }
+    public void setNomLaboratoire(String v)      { this.nomLaboratoire = v; }
+    public void setTypeAnalyse(String v)         { this.typeAnalyse = v; }
+    public void setDateDemande(String v)         { this.dateDemande = v; }
+    public void setDateResultat(String v)        { this.dateResultat = v; }
+    public void setStatut(String v)              { this.statut = v; }
+    public void setResultat(String v)            { this.resultat = v; }
+    public void setNomPatient(String v)          { this.nomPatient = v; }
+    public void setNomMedecin(String v)          { this.nomMedecin = v; }
+}

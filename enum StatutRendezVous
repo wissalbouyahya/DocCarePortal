@@ -1,0 +1,14 @@
+package com.projet.DocCarePortal.Entity;
+
+public enum StatutRendezVous {
+        LIB,         
+        EN_ATTENTE,            
+        CONFIRME,              
+        EN_ATTENTE_PAIEMENT,   
+        PAIEMENT_ECHOUE,        
+        PAYE,                  
+        EN_COURS,               
+        TERMINE,                
+        ANNULE,
+        BLOQUER
+}

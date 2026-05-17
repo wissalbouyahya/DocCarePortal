@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="app-wrapper d-flex">
+    
+    <app-menu></app-menu>
+
+   
+    <main class="main-content flex-fill p-4">
+      <app-header></app-header>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-lg-8 col-xl-7">
+          <div class="card-modern p-4">
+            <h5 class="fw-bold mb-4 d-flex align-items-center gap-2">
+              <i class="fas fa-user-shield fs-3" style="color: var(--primary);"></i>
+
+              Ajouter un Médecin
+            </h5>
+
+            <form [formGroup]="medecinForm" (ngSubmit)="addNewMedecin()">
+              <div class="row g-4">
+                <!-- Bloc identité -->
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Nom</label>
+                  <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control form-control-lg" formControlName="nom" placeholder="nom">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Prénom</label>
+                  <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control form-control-lg" formControlName="prenom" placeholder="prenom">
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label fw-semibold">Email</label>
+                  <div class="input-icon">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" class="form-control form-control-lg" formControlName="email" placeholder="medecin@exemple.com">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Mot de passe</label>
+                  <div class="input-icon">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" class="form-control form-control-lg" formControlName="mdp" placeholder="**********">
+                  </div>
+                </div>
+
+               
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Spécialité</label>
+                  <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control form-control-lg" formControlName="specialite" placeholder="specialite">
+                  </div>
+                </div>
+
+                
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Adresse</label>
+                  <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control form-control-lg" formControlName="adresseM" placeholder="Adresse">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Téléphone</label>
+                  <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control form-control-lg" formControlName="numeroTel" placeholder="+216 *********">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Status</label>
+                  <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control form-control-lg" formControlName="status" placeholder="status">
+                  </div>
+                </div>
+
+                
+                <div class="col-12 mt-4 d-flex gap-3 justify-content-end">
+                  <button type="reset" class="btn btn-outline-primary rounded-pill px-4 py-2 d-flex align-items-center">
+                    <i class="fas fa-times me-2"></i> Annuler
+                  </button>
+                  <button type="submit" class="btn btn-primary rounded-pill px-4 py-2 d-flex align-items-center shadow-sm">
+                    <i class="fas fa-check me-2"></i> Ajouter
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pied de page -->
+      <app-footer></app-footer>
+    </main>
+  </div>
+</body>
+</html>

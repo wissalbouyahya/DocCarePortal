@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Médecins</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-wrapper d-flex">
+        <app-menu></app-menu>
+
+        <main class="main-content flex-fill p-0">
+            <app-header></app-header>
+
+            <div class="container-fluid mt-0">
+                <div class="page-title mb-4">
+                    <div class="row">
+                        <div class="col-sm-6 col-12">
+                            <h2><i class="fas fa-user-md me-2"></i>Liste des Médecins</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid table-space basic_table p-0">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card overflow-hidden">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="border-bottom-secondary border-top-0">
+                                                <th scope="col">Id</th>
+                                                <th scope="col">Nom</th>
+                                                <th scope="col">Prénom</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Spécialité</th>
+                                                <th scope="col">Adresse</th>
+                                                <th scope="col">Téléphone</th>
+                                                <th scope="col">Statut</th>
+                                                <th scope="col" class="actions-column">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let medecin of listeMedecin" class="border-bottom-success">
+                                                <td>{{ medecin.idMedecin }}</td>
+                                                <td>{{ medecin.nom }}</td>
+                                                <td>{{ medecin.prenom }}</td>
+                                                <td>{{ medecin.email }}</td>
+                                                <td>{{ medecin.specialite }}</td>
+                                                <td>{{ medecin.adresseM }}</td>
+                                                <td>{{ medecin.numeroTel }}</td>
+                                                <td>
+                                                    <span class="badge" [ngClass]="medecin.status === 'ACTIF' ? 'bg-success' : 'bg-danger'">
+                                                        {{ medecin.status }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <a [routerLink]="['/modifiermedecin', medecin.idMedecin]" 
+                                                       class="btn btn-modifier me-2">
+                                                        <i class="fas fa-edit me-1"></i>Modifier
+                                                    </a>
+                                                    <button type="button" 
+                                                            (click)="DeleteMedecin(medecin)" 
+                                                            class="btn btn-delete">
+                                                        <i class="fas fa-trash me-1"></i>Supprimer
+                                                    </button>
+                                                    <button *ngIf="medecin.status === 'ACTIF'" 
+                                                            class="btn btn-sm btn-danger btn-3d ms-2" 
+                                                            (click)="updateMedecinStatus(medecin)">
+                                                       <i class="fa-solid fa-check"></i>
+                                                    </button>
+                                                    <button *ngIf="medecin.status !== 'ACTIF'" 
+                                                            class="btn btn-sm btn-success btn-3d ms-2" 
+                                                            (click)="updateMedecinStatus(medecin)">
+                                                      <i class="fa-solid fa-lock" style="color: black;"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngIf="listeMedecin.length === 0">
+                                                <td colspan="9" class="text-center">Aucun médecin trouvé</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <app-footer></app-footer>
+        </main>
+    </div>
+</body>
+</html>
